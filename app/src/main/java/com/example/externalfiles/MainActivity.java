@@ -53,20 +53,40 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Checks whether external storage is mounted and available.
+     *
+     * @return true if external storage is mounted.
+     */
     public boolean isExternalStorageAvailable() {
         String state = Environment.getExternalStorageState();
         return Environment.MEDIA_MOUNTED.equals(state);
     }
 
+    /**
+     * Checks if the app has permission to write to external storage.
+     *
+     * @return true if permission is granted.
+     */
     private boolean checkPermission() {
         int result = ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
         return result == PackageManager.PERMISSION_GRANTED;
     }
 
+    /**
+     * Requests permission to write to external storage.
+     */
     private void requestPermission() {
         ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_PERMISSION);
     }
 
+    /**
+     * Callback after requesting permissions.
+     *
+     * @param requestCode  Request code passed in requestPermissions().
+     * @param permissions  The requested permissions.
+     * @param grantResults The grant results for the corresponding permissions.
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -79,6 +99,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Saves the input text to a file in external storage.
+     *
+     * @param view The button view that triggered this method.
+     */
     public void goSave(View view) {
         try {
             File externalDir = Environment.getExternalStorageDirectory();
@@ -94,6 +119,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Reads the contents of the file from external storage.
+     *
+     * @return The content of the file as a String.
+     */
     public String getTextFile() {
         String text = "";
         try {
@@ -118,6 +148,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Clears the contents of the file and the input/output views.
+     *
+     * @param view The button view that triggered this method.
+     */
     public void goReset(View view) {
         try {
             File externalDir = Environment.getExternalStorageDirectory();
@@ -133,6 +168,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Saves the current text and exits the activity.
+     *
+     * @param view The button view that triggered this method.
+     */
     public void goExit(View view) {
         goSave(view);
         finish();
