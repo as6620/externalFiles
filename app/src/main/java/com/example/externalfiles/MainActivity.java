@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
         tV = (TextView) findViewById(R.id.tV);
         eT = (EditText) findViewById(R.id.eT);
 
-        String textFromFile = getFileText();
+        String textFromFile = getTextFile();
         if(isExternalStorageAvailable() && checkPermission()) {
-            displayTv.setText(textFromFile);
+            tV.setText(textFromFile);
         } else {
             requestPermission();
         }

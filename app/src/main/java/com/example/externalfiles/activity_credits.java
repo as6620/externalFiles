@@ -1,6 +1,7 @@
 package com.example.externalfiles;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,5 +16,8 @@ public class activity_credits extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credits);
 
+    }
+    public void goClose(View view) {
+        finish();
     }
 }
